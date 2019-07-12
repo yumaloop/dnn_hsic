@@ -1,5 +1,7 @@
 # dnn_hsic
 
+### Description
+
 Measuring HSIC(Hilbert Space Independence Critation) between intermediate layers in Deep Neural Network models.
 
 ### References
