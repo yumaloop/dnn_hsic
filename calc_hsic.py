@@ -1,8 +1,12 @@
+#!/usr/bin/env python
+# coding: utf-8
+
 import numpy as np
-from tqdm import tqdm 
+from tqdm import tqdm
+from sklearn.preprocessing import StandardScaler
 
 
-# read data
+# ### Load intermediate layer output
 in_data = np.load('data/dnn_base/in_data.npy')
 layer1_output = np.load('data/dnn_base/layer1_output.npy')
 layer2_output = np.load('data/dnn_base/layer2_output.npy')
@@ -17,7 +21,7 @@ activation5_output = np.load('data/dnn_base/activation5_output.npy')
 
 print()
 print("Model intermediate layer output")
-print("==============================================")
+print("==========================")
 print()
 print("in_data :", in_data.shape)
 print("----------------------------------------------")
@@ -39,9 +43,9 @@ print("activation4_output :", activation4_output.shape)
 print("----------------------------------------------")
 print("layer5_output :", layer5_output.shape)
 print("----------------------------------------------")
-print("activation5_output :", activation5_output.shape)
-print()
+print("activation5_output :", activation5_output.shape) # <------- softmax func
 
+# ### Kernel Tools
 
 class RBFkernel():
     def __init__(self, sigma=0.5):
@@ -57,8 +61,8 @@ class RBFkernel():
     
     def set_params(self, sigma):
         self.sigma = sigma
-        
                 
+            
 def gram_matrix(kernel, data, m):
     """
     Arguments:
@@ -67,21 +71,12 @@ def gram_matrix(kernel, data, m):
     - data : data samples, shape=(m, dim(data_i))
     - m : number of samples
     """
-    # gram_matrix = np.zeros((m, m))
-    for k in tqdm(range(int(m/100))):
-
-        if k != 0:
-            np.save('data/calc_hsic/gram_matrix__'+str(k*100-100)+'-'+str(k*100), gram_matrix)
-            del gram_matrix
-        gram_matrix = np.zeros((100, m))
-
-        for i in tqdm(range(100)):
-            for j in tqdm(range(m)):
-                gram_matrix[i][j] = kernel(data[i], data[j])
-                # gram_matrix[i][j] = kernel(data[i], data[j])
-
-    # print(gram_matrix_i) # debug code
-    # return gram_matrix
+    gram_matrix = np.zeros((m, m))
+    for i in tqdm(range(m)):
+        for j in range(m):
+            gram_matrix[i][j] = kernel(data[i], data[j])
+            
+    return gram_matrix
 
 
 def hsic(k, l, m, X, Y):
@@ -94,25 +89,57 @@ def hsic(k, l, m, X, Y):
     - X : data samples, shape=(m, dim(X_i))
     - Y : data samples, shape=(m, dim(Y_i))
     """
-    H = np.diag(np.full(m, 1 - (1/m)))
+    H = np.full((m, m), -(1/m)) + np.eye(m)
     K = gram_matrix(k, X, m)
+    print("Gram(X) :", K, "\nGram(X) mean :", K.mean())
     L = gram_matrix(l, Y, m)
+    print("Gram(Y) :", L, "\nGram(Y) mean :", L.mean())
     HSIC = np.trace(np.dot(K, np.dot(H, np.dot(L, H)))) / ((m - 1)**2)
     return HSIC
 
 
+# **sample code**
+# 
+# ```python
+# kernel = RBFkernel(sigma=1)
+# kernel(np.array([1,2,3]), np.array([1,2,6]))
+# ```
+# Output: 0.011108996538242306
 
-# m = 1000
-m = 60000
-X = in_data[:m]
-Y = layer3_output[:m]
+# ### Measuring HSIC
 
-kernel = RBFkernel(sigma=75)
+# In_data vs layer1_output
+# 40 min
 
-gram_matrix(kernel, X, m)
-gram_matrix(kernel, Y, m)
-# hsic = hsic(kernel, kernel, m, X, Y)
+def calc_hsic(X, Y, X_name=None, Y_name=None, m=10000, sigma=75):
 
-print()
-print("----------------------------------------------")
-print("HSIC(in_data, layer3_output)", hsic)
+    print(X_name+".shape :", X.shape)
+    print(Y_name+".shape :", Y.shape)
+
+    kernel_x = RBFkernel(sigma=sigma)
+    kernel_y = RBFkernel(sigma=sigma * np.sqrt(X.shape[1]/Y.shape[1]))
+
+    hsic_value = hsic(kernel_x, kernel_y, m, X, Y)
+    print()
+    print("-------------------------------------------------")
+    print("HSIC("+X_name+", "+Y_name+") =", hsic_value)
+    print("m :", m)
+    print("sigma :", sigma)
+    print("-------------------------------------------------")
+    print()
+
+
+# calc_hsic(in_data, in_data, X_name="in_data", Y_name="in_data")
+# calc_hsic(in_data, layer1_output, X_name="in_data", Y_name="layer1_output")
+calc_hsic(in_data, activation1_output, X_name="in_data", Y_name="activation1_output")
+calc_hsic(in_data, layer2_output, X_name="in_data", Y_name="layer2_output")
+calc_hsic(in_data, activation2_output, X_name="in_data", Y_name="activation2_output")
+calc_hsic(in_data, layer3_output, X_name="in_data", Y_name="layer3_output")
+calc_hsic(in_data, activation3_output, X_name="in_data", Y_name="activation3_output")
+calc_hsic(in_data, layer4_output, X_name="in_data", Y_name="layer4_output")
+calc_hsic(in_data, activation4_output, X_name="in_data", Y_name="activation4_output")
+calc_hsic(in_data, layer5_output, X_name="in_data", Y_name="layer5_output")
+calc_hsic(in_data, activation5_output, X_name="in_data", Y_name="actrvation5_output")
+
+
+

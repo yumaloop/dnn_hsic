@@ -83,7 +83,9 @@ print("loss (test) :", test_loss)
 print("acc  (test) :", test_acc)
 
 
-model.layers
+# model.layers
+model.save('data/dnn_base/base_model.h5', include_optimizer=False)
+# model = keras.models.load_model('data/dnn_base/base_model.h5', compile=False)
 
 
 # ### Kerasで中間層の出力
@@ -108,8 +110,8 @@ for lay in model.layers: print(lay.name)
 # intermediate layer output
 # --------------------------
 
-in_data = x_train
-print("in_data", x_train.shape)
+in_data = x_test
+print("in_data", x_test.shape)
 
 layer_name = "layer1"
 m = Model(inputs=model.input, outputs=model.get_layer(layer_name).output)
@@ -163,13 +165,11 @@ print(layer_name, activation5_output.shape)
 
 
 np.save('data/dnn_base/in_data', in_data)
-
 np.save('data/dnn_base/layer1_output', layer1_output)
 np.save('data/dnn_base/layer2_output', layer2_output)
 np.save('data/dnn_base/layer3_output', layer3_output)
 np.save('data/dnn_base/layer4_output', layer4_output)
 np.save('data/dnn_base/layer5_output', layer5_output)
-
 np.save('data/dnn_base/activation1_output', activation1_output)
 np.save('data/dnn_base/activation2_output', activation2_output)
 np.save('data/dnn_base/activation3_output', activation3_output)
