@@ -4,6 +4,12 @@
 
 Measuring HSIC(Hilbert Space Independence Critation) between intermediate layers in Deep Neural Network models.
 
+### Experimental Results
+
+![fig1](https://user-images.githubusercontent.com/31915487/61437436-0b2a4500-a978-11e9-8f0f-52a9844a1559.png)
+
+![fig2](https://user-images.githubusercontent.com/31915487/61437439-0b2a4500-a978-11e9-93ba-48fd37a7e2af.png)
+
 ### References
 
 - "Dimensionality Reduction for Supervised Learning with Reproducing Kernel Hilbert Spaces" (2004)<br>
