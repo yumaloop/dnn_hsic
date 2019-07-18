@@ -7,7 +7,7 @@ Measuring HSIC(Hilbert Space Independence Critation) between intermediate layers
 ### Experimental Results
 
 The experimental content is to measure the HSICs of each layer in the pre-trained MNIST classifier (DNN model). 
-The model classifies the MNIST test data (10,000 images, class pairs) and the state of each layer is taken.
+A model classifies the MNIST test data (10,000 images, class pairs) and the state of each layer is taken.
 
 ![fig1](https://user-images.githubusercontent.com/31915487/61437436-0b2a4500-a978-11e9-8f0f-52a9844a1559.png)
 
