@@ -15,7 +15,7 @@ The model classifies the MNIST test data (10,000 images, class pairs) and the st
 
 ### References
 
-- "Dimensionality Reduction for Supervised Learning with Reproducing Kernel Hilbert Spaces" (2004)<br>
+- "Dimensionality Reduction for Supervised Learning with Reproducing Kernel Hilbert Spaces" (J. Mach. Learn., 2004)<br>
 https://www.di.ens.fr/~fbach/fukumizu04a.pdf
 
 - "Measuring Statistical Dependence with Hilbert-Schmidt Norms", (2005)<br>
@@ -29,3 +29,4 @@ https://arxiv.org/pdf/1711.00165.pdf
 
 - "Deep Gaussian Process", (2013)<br>
 http://proceedings.mlr.press/v31/damianou13a.pdf
+
