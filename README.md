@@ -43,3 +43,6 @@ http://proceedings.mlr.press/v31/damianou13a.pdf
 
 - "Deep Neural Networks as Gaussian Process", (ICLR 2018)<br>
 https://arxiv.org/pdf/1711.00165.pdf
+
+- "Stronger generalization bounds for deep nets via a compression approach", (ICML 2018)<br>
+http://proceedings.mlr.press/v80/arora18b/arora18b.pdf
