@@ -129,18 +129,17 @@ def calc_hsic(X, Y, X_name=None, Y_name=None, m=10000, sigma=75):
     print()
 
 
+X=activation1_output
+X_name="act1"
 
-calc_hsic(activation5_output, in_data, X_name="act5", Y_name="in_data")
-calc_hsic(activation5_output, layer1_output, X_name="act5", Y_name="layer1_output")
-calc_hsic(activation5_output, activation1_output, X_name="act5", Y_name="activation1_output")
-calc_hsic(activation5_output, layer2_output, X_name="act5", Y_name="layer2_output")
-calc_hsic(activation5_output, activation2_output, X_name="act5", Y_name="activation2_output")
-calc_hsic(activation5_output, layer3_output, X_name="act5", Y_name="layer3_output")
-calc_hsic(activation5_output, activation3_output, X_name="act5", Y_name="activation3_output")
-calc_hsic(activation5_output, layer4_output, X_name="act5", Y_name="layer4_output")
-calc_hsic(activation5_output, activation4_output, X_name="act5", Y_name="activation4_output")
-calc_hsic(activation5_output, layer5_output, X_name="act5", Y_name="layer5_output")
-calc_hsic(activation5_output, activation5_output, X_name="act5", Y_name="actrvation5_output")
-
-
-
+calc_hsic(X, in_data, X_name=X_name, Y_name="in_data")
+calc_hsic(X, layer1_output, X_name=X_name, Y_name="lay1")
+calc_hsic(X, activation1_output, X_name=X_name, Y_name="act1")
+calc_hsic(X, layer2_output, X_name=X_name, Y_name="lay2")
+calc_hsic(X, activation2_output, X_name=X_name, Y_name="act2")
+calc_hsic(X, layer3_output, X_name=X_name, Y_name="lay3")
+calc_hsic(X, activation3_output, X_name=X_name, Y_name="act3")
+calc_hsic(X, layer4_output, X_name=X_name, Y_name="lay4")
+calc_hsic(X, activation4_output, X_name=X_name, Y_name="act4")
+calc_hsic(X, layer5_output, X_name=X_name, Y_name="lay5")
+calc_hsic(X, activation5_output, X_name="lay1", Y_name="act5")
