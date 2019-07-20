@@ -129,8 +129,8 @@ def calc_hsic(X, Y, X_name=None, Y_name=None, m=10000, sigma=75):
     print()
 
 
-X=activation1_output
-X_name="act1"
+X=layer2_output
+X_name="lay2"
 
 calc_hsic(X, in_data, X_name=X_name, Y_name="in_data")
 calc_hsic(X, layer1_output, X_name=X_name, Y_name="lay1")
