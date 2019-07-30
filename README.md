@@ -36,7 +36,7 @@ https://www.di.ens.fr/~fbach/fukumizu04a.pdf
 http://www.gatsby.ucl.ac.uk/~gretton/papers/GreBouSmoSch05.pdf
 
 - "A Kernel Statistical Test of Independence", (NIPS 2007)<br>
-https://papers.nips.cc/paper/3201-a-kernel-statistical-test-of-independence
+https://papers.nips.cc/paper/3201-a-kernel-statistical-test-of-independence.pdf
 
 - "Kernel Methods for Deep Learning", (NIPS 2009)<br>
 https://papers.nips.cc/paper/3628-kernel-methods-for-deep-learning.pdf
