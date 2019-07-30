@@ -52,7 +52,7 @@ class RBFkernel():
         
     def __call__(self, x, y):
         numerator = -1 * np.linalg.norm(x - y, ord=2)**2
-        denominator = 2 * (self.sigma**2)
+        denominator = self.sigma ** 2
         return np.exp(numerator / denominator)
     
     def get_params(self):
