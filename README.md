@@ -29,11 +29,14 @@ The model classifies the MNIST test data (10,000 images-class samples) and the s
 
 ### References
 
-- "Dimensionality Reduction for Supervised Learning with Reproducing Kernel Hilbert Spaces" (JMLR 2004)<br>
+- "Dimensionality Reduction for Supervised Learning with Reproducing Kernel Hilbert Spaces", (JMLR 2004)<br>
 https://www.di.ens.fr/~fbach/fukumizu04a.pdf
 
 - "Measuring Statistical Dependence with Hilbert-Schmidt Norms", (ALT 2005)<br>
 http://www.gatsby.ucl.ac.uk/~gretton/papers/GreBouSmoSch05.pdf
+
+- "A Kernel Statistical Test of Independence", (NIPS 2007)<br>
+https://papers.nips.cc/paper/3201-a-kernel-statistical-test-of-independence
 
 - "Kernel Methods for Deep Learning", (NIPS 2009)<br>
 https://papers.nips.cc/paper/3628-kernel-methods-for-deep-learning.pdf
