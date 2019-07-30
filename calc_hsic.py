@@ -5,7 +5,6 @@ import numpy as np
 from tqdm import tqdm
 from sklearn.preprocessing import StandardScaler
 
-
 # ### Load intermediate layer output
 in_data = np.load('data/dnn_base/in_data.npy')
 layer1_output = np.load('data/dnn_base/layer1_output.npy')
@@ -111,7 +110,7 @@ def hsic(k, l, m, X, Y):
 # In_data vs layer1_output
 # 40 min
 
-def calc_hsic(X, Y, X_name=None, Y_name=None, m=10000, sigma=75):
+def calc_hsic(X, Y, X_name=None, Y_name=None, m=10000, sigma=1):
 
     print(X_name+".shape :", X.shape)
     print(Y_name+".shape :", Y.shape)
@@ -129,8 +128,8 @@ def calc_hsic(X, Y, X_name=None, Y_name=None, m=10000, sigma=75):
     print()
 
 
-X=activation2_output
-X_name="act2"
+X=in_data
+X_name="in_data"
 
 calc_hsic(X, in_data, X_name=X_name, Y_name="in_data")
 calc_hsic(X, layer1_output, X_name=X_name, Y_name="lay1")
